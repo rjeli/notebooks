@@ -12,3 +12,13 @@ def two_adic_generator(field, bits):
 def two_adic_subgroup(field, bits, shift=1):
 	g = two_adic_generator(field, bits)
 	return [shift*g^i for i in range(2^bits)]
+
+def powers(base, n=None):
+	i = 0
+	cur = base.parent()(1)
+	while True:
+		if n is not None and i == n:
+			return
+		yield cur
+		cur *= base
+		i += 1
